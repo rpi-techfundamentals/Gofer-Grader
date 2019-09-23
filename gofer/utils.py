@@ -5,9 +5,9 @@ from IPython import get_ipython
 def flush_inline_matplotlib_plots():
     """
     Flush matplotlib plots immediately, rather than asynchronously.
-    Basically, the inline backend only shows the plot after the entire 
+    Basically, the inline backend only shows the plot after the entire
     cell executes, which means we can't easily use a contextmanager to
-    suppress displaying it. See https://github.com/jupyter-widgets/ipywidgets/issues/1181/ 
+    suppress displaying it. See https://github.com/jupyter-widgets/ipywidgets/issues/1181/
     and https://github.com/ipython/ipython/issues/10376 for more details. This
     function displays flushes any pending matplotlib plots if we are using
     the inline backend.
@@ -18,14 +18,14 @@ def flush_inline_matplotlib_plots():
         # matplotlib hasn't been imported, nothing to do.
         return
 
-    try:
-        import matplotlib as mpl
-        from ipykernel.pylab.backend_inline import flush_figures
-    except ImportError:
-        return
+    #try:
+    #    import matplotlib as mpl
+    #    from ipykernel.pylab.backend_inline import flush_figures
+    #except ImportError:
+    #    return
 
-    if mpl.get_backend() == 'module://ipykernel.pylab.backend_inline':
-        flush_figures()
+    #if mpl.get_backend() == 'module://ipykernel.pylab.backend_inline':
+    #    flush_figures()
 
 
 @contextmanager
